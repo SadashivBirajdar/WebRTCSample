@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.appspot.apprtc">
+
+  <application>
+    <activity
+        android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
+        android:name=".ui.CallActivity"
+        android:resizeableActivity="true"
+        android:screenOrientation="fullUser"
+        android:supportsPictureInPicture="true"
+        android:launchMode="singleTask"
+        android:theme="@style/CallActivityTheme"/>
+  </application>
+
+</manifest>
