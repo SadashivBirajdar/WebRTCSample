@@ -17,11 +17,11 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
@@ -31,7 +31,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.Nullable;
 
 /**
  * Simple CPU monitor.  The caller creates a CpuMonitor object which can then
@@ -251,8 +250,7 @@ public class CpuMonitor {
   private void init() {
     try (FileInputStream fin = new FileInputStream("/sys/devices/system/cpu/present");
          InputStreamReader streamReader = new InputStreamReader(fin, Charset.forName("UTF-8"));
-         BufferedReader reader = new BufferedReader(streamReader);
-         Scanner scanner = new Scanner(reader).useDelimiter("[-\n]");) {
+         BufferedReader reader = new BufferedReader(streamReader); Scanner scanner = new Scanner(reader).useDelimiter("[-\n]")) {
       scanner.nextInt(); // Skip leading number 0.
       cpusPresent = 1 + scanner.nextInt();
       scanner.close();
@@ -488,7 +486,8 @@ public class CpuMonitor {
    * of /proc/stat.
    */
   @SuppressWarnings("StringSplitter")
-  private @Nullable ProcStat readProcStat() {
+  private @Nullable
+  ProcStat readProcStat() {
     long userTime = 0;
     long systemTime = 0;
     long idleTime = 0;

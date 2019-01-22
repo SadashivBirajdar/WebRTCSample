@@ -12,11 +12,11 @@ package org.appspot.apprtc;
 
 import android.media.AudioFormat;
 import android.os.Environment;
-import javax.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.concurrent.ExecutorService;
@@ -85,10 +85,7 @@ public class RecordedAudioToFileController
   // Checks if external storage is available for read and write.
   private boolean isExternalStorageWritable() {
     String state = Environment.getExternalStorageState();
-    if (Environment.MEDIA_MOUNTED.equals(state)) {
-      return true;
-    }
-    return false;
+    return Environment.MEDIA_MOUNTED.equals(state);
   }
 
   // Utilizes audio parameters to create a file name which contains sufficient

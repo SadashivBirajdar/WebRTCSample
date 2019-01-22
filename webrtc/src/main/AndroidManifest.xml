@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.appspot.apprtc">
 
+  <uses-permission android:name="android.permission.BLUETOOTH"/>
   <application>
     <activity
         android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
